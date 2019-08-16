@@ -1,0 +1,5 @@
+# Read more about codeowners file:
+# https://help.github.com/en/articles/about-code-owners
+
+# Code Owners for Raven.js by default will be the ThinkHR frontend team.
+* @thinkhr-code/apps-frontend
