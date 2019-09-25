@@ -45,8 +45,7 @@
         "test": "cross-env nyc npm run test:unit",
         "test:unit": "cross-env NODE_PATH=src NODE_ENV=test mocha --require @babel/register --require ./scripts/mocha.js --require ignore-styles 'src/lib/utils/*.spec.js'",
         "watch:build": "run-p 'cjs:* -- --verbose --watch' 'esm:* -- --verbose --watch'",
-        "watch:test": "cross-env npm run test:unit -- --watch",
-        "install": "( [ ! -f ./pepcus-core ] && [ ! -f ./AlreadyInstalled ] && echo \"\" > ./AlreadyInstalled && npm install . && node ./build.js ) || echo \"SKIP: NON GIT SOURCE\""
+        "watch:test": "cross-env npm run test:unit -- --watch"
     },
     "browserslist": [
         "> 0.2%",
