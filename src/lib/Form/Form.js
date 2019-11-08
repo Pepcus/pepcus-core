@@ -77,7 +77,7 @@ class Form extends Component {
          */
         fields            : PropTypes.object,
         /**
-         *
+         * Custom field Template for schema form.
          */
         FieldTemplate     : PropTypes.func,
         /**
