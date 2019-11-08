@@ -77,6 +77,10 @@ class Form extends Component {
          */
         fields            : PropTypes.object,
         /**
+         *
+         */
+        FieldTemplate     : PropTypes.func,
+        /**
          * The `formContext` which gets passed
          * down to react-jsonschema-form.
          */
@@ -170,6 +174,7 @@ class Form extends Component {
         enableDirtyCheck  : false,
         externalSubmission: false,
         fields            : null,
+        FieldTemplate     : null,
         formContext       : {},
         formData          : {},
         handlers          : null,
@@ -466,6 +471,7 @@ class Form extends Component {
         const {
             children,
             fields,
+            FieldTemplate,
             loading,
             loadingText,
             onSubmit,
@@ -486,7 +492,7 @@ class Form extends Component {
                 <JsonSchemaForm
                     {...otherProps}
                     ArrayFieldTemplate={customFields.ArrayFieldTemplate}
-                    FieldTemplate={customFields.FieldTemplate}
+                    FieldTemplate={FieldTemplate ? FieldTemplate : customFields.FieldTemplate}
                     ObjectFieldTemplate={customFields.ObjectFieldTemplate}
                     fields={{ ...customFields, ...fields }}
                     formContext={this.getFormContext()}
