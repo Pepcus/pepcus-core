@@ -44,118 +44,122 @@ class Form extends Component {
         /**
          * A title for the form actions group
          */
-        actionsTitle      : PropTypes.string,
+        actionsTitle       : PropTypes.string,
         /**
          * Callback fired after the form is submitted.
          *
          * @param {object} resp The api response
          */
-        afterSubmit       : PropTypes.func,
+        afterSubmit        : PropTypes.func,
         /**
          * A list of api configs to call
          */
-        apis              : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
+        apis               : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
         /**
          * A base URL for making the RESTful API calls.
          */
-        baseUrl           : PropTypes.string,
+        baseUrl            : PropTypes.string,
         /**
          * The contents of the Form.
          */
-        children          : PropTypes.node,
+        children           : PropTypes.node,
         /**
          * To enable form dirty check operation.
          * If set to 'true', the 'isDirty' flag will be passed in onChange callback params.
          */
-        enableDirtyCheck  : PropTypes.bool,
+        enableDirtyCheck   : PropTypes.bool,
         /**
          * Handle form submission through an external source.
          */
-        externalSubmission: PropTypes.bool,
+        externalSubmission : PropTypes.bool,
         /**
          * A set of custom fields for the form.
          */
-        fields            : PropTypes.object,
+        fields             : PropTypes.object,
         /**
          * Custom field Template for schema form.
          */
-        FieldTemplate     : PropTypes.func,
+        FieldTemplate      : PropTypes.func,
         /**
          * The `formContext` which gets passed
          * down to react-jsonschema-form.
          */
-        formContext       : PropTypes.object,
+        formContext        : PropTypes.object,
         /**
          * Initial `formData`
          */
-        formData          : PropTypes.object,
+        formData           : PropTypes.object,
         /**
          * A map of action handlers used by rendered components.
          */
-        handlers          : PropTypes.object,
+        handlers           : PropTypes.object,
         /**
          * If you would like to hide the default form actions.
          */
-        hideActions       : PropTypes.bool,
+        hideActions        : PropTypes.bool,
         /**
          * A boolean to show the internal `loading` component.
          */
-        loading           : PropTypes.bool,
+        loading            : PropTypes.bool,
         /**
          * The text to be displayed for the internal `loading` component.
          */
-        loadingText       : PropTypes.string,
+        loadingText        : PropTypes.string,
         /**
          * An oAuth token to make API calls.
          */
-        oAuthToken        : PropTypes.string,
+        oAuthToken         : PropTypes.string,
+        /**
+         * Custom object field Template for schema form.
+         */
+        ObjectFieldTemplate: PropTypes.func,
         /**
          * Callback fired when a value changes in the form.
          *
          * @param {Object} form  The form object
          */
-        onChange          : PropTypes.func,
+        onChange           : PropTypes.func,
         /**
          * Callback fired when the form validates and has errors present.
          *
          * @param {Object} errors The form errors
          */
-        onError           : PropTypes.func,
+        onError            : PropTypes.func,
         /**
          * Callback fired when the form is ready to be submitted.
          *
          * @param {Object} formData The current formData
          */
-        onSubmit          : PropTypes.func,
+        onSubmit           : PropTypes.func,
         /**
          * If `true`, the form will be marked as read-only.
          */
-        readonly          : PropTypes.func,
+        readonly           : PropTypes.func,
         /**
          * The `schema` for info providing what should the Form render.
          */
-        schema            : PropTypes.object.isRequired,
+        schema             : PropTypes.object.isRequired,
         /**
          * Transform the data coming into the form via the API call.
          *
          * @param   {Object} formData The current `formData`
          * @returns {Object}          The transformed `formData`
          */
-        transformDataIn   : PropTypes.func,
+        transformDataIn    : PropTypes.func,
         /**
          * Transform the data going out of the form via the `onSubmit` handler.
          *
          * @returns {Object}  The transformed `formData`
          */
-        transformDataOut  : PropTypes.func,
+        transformDataOut   : PropTypes.func,
         /**
          * The `uiSchema` for determining how the Form should be rendered.
          */
-        uiSchema          : PropTypes.object,
+        uiSchema           : PropTypes.object,
         /**
          * A set of custom widgets for the form.
          */
-        widgets           : PropTypes.object
+        widgets            : PropTypes.object
     };
 
     static defaultProps = {
@@ -166,30 +170,31 @@ class Form extends Component {
                 onClick : () => {}
             }
         ],
-        actionsTitle      : '',
-        afterSubmit       : null,
-        apis              : {},
-        baseUrl           : null,
-        children          : null,
-        enableDirtyCheck  : false,
-        externalSubmission: false,
-        fields            : null,
-        FieldTemplate     : null,
-        formContext       : {},
-        formData          : {},
-        handlers          : null,
-        hideActions       : false,
-        loading           : null,
-        loadingText       : null,
-        oAuthToken        : null,
-        onChange          : null,
-        onError           : null,
-        onSubmit          : null,
-        readonly          : null,
-        transformDataIn   : null,
-        transformDataOut  : null,
-        uiSchema          : {},
-        widgets           : null
+        actionsTitle       : '',
+        afterSubmit        : null,
+        apis               : {},
+        baseUrl            : null,
+        children           : null,
+        enableDirtyCheck   : false,
+        externalSubmission : false,
+        fields             : null,
+        FieldTemplate      : null,
+        formContext        : {},
+        formData           : {},
+        handlers           : null,
+        hideActions        : false,
+        loading            : null,
+        loadingText        : null,
+        oAuthToken         : null,
+        ObjectFieldTemplate: null,
+        onChange           : null,
+        onError            : null,
+        onSubmit           : null,
+        readonly           : null,
+        transformDataIn    : null,
+        transformDataOut   : null,
+        uiSchema           : {},
+        widgets            : null
     };
 
     constructor(props) {
@@ -474,6 +479,7 @@ class Form extends Component {
             FieldTemplate,
             loading,
             loadingText,
+            ObjectFieldTemplate,
             onSubmit,
             schema,
             uiSchema,
@@ -493,7 +499,7 @@ class Form extends Component {
                     {...otherProps}
                     ArrayFieldTemplate={customFields.ArrayFieldTemplate}
                     FieldTemplate={FieldTemplate ? FieldTemplate : customFields.FieldTemplate}
-                    ObjectFieldTemplate={customFields.ObjectFieldTemplate}
+                    ObjectFieldTemplate={ObjectFieldTemplate ? ObjectFieldTemplate : customFields.ObjectFieldTemplate}
                     fields={{ ...customFields, ...fields }}
                     formContext={this.getFormContext()}
                     formData={formData}
