@@ -110,6 +110,10 @@ class Form extends Component {
          */
         oAuthToken        : PropTypes.string,
         /**
+         * Custom object field Template for schema form.
+         */
+        ObjectFieldTemplate: PropTypes.func,
+        /**
          * Callback fired when a value changes in the form.
          *
          * @param {Object} form  The form object
@@ -182,6 +186,7 @@ class Form extends Component {
         loading           : null,
         loadingText       : null,
         oAuthToken        : null,
+        ObjectFieldTemplate: null,
         onChange          : null,
         onError           : null,
         onSubmit          : null,
@@ -474,6 +479,7 @@ class Form extends Component {
             FieldTemplate,
             loading,
             loadingText,
+            ObjectFieldTemplate,
             onSubmit,
             schema,
             uiSchema,
@@ -493,7 +499,7 @@ class Form extends Component {
                     {...otherProps}
                     ArrayFieldTemplate={customFields.ArrayFieldTemplate}
                     FieldTemplate={FieldTemplate ? FieldTemplate : customFields.FieldTemplate}
-                    ObjectFieldTemplate={customFields.ObjectFieldTemplate}
+                    ObjectFieldTemplate={ObjectFieldTemplate ? ObjectFieldTemplate : customFields.ObjectFieldTemplate}
                     fields={{ ...customFields, ...fields }}
                     formContext={this.getFormContext()}
                     formData={formData}
