@@ -351,11 +351,12 @@ function (_Component) {
           FieldTemplate = _this$props7.FieldTemplate,
           loading = _this$props7.loading,
           loadingText = _this$props7.loadingText,
+          ObjectFieldTemplate = _this$props7.ObjectFieldTemplate,
           onSubmit = _this$props7.onSubmit,
           schema = _this$props7.schema,
           uiSchema = _this$props7.uiSchema,
           widgets = _this$props7.widgets,
-          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "onSubmit", "schema", "uiSchema", "widgets"]);
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
       var loadingProps = {
         loading: loading != null ? loading : submittingForm,
         text: loadingText != null && loadingText ? loadingText : submittingFormText
@@ -363,7 +364,7 @@ function (_Component) {
       return _react.default.createElement(FormStyled, null, _react.default.createElement(_Loading.default, loadingProps), _react.default.createElement(_reactJsonschemaForm.default, Object.assign({}, otherProps, {
         ArrayFieldTemplate: _fields.default.ArrayFieldTemplate,
         FieldTemplate: FieldTemplate ? FieldTemplate : _fields.default.FieldTemplate,
-        ObjectFieldTemplate: _fields.default.ObjectFieldTemplate,
+        ObjectFieldTemplate: ObjectFieldTemplate ? ObjectFieldTemplate : _fields.default.ObjectFieldTemplate,
         fields: (0, _objectSpread2.default)({}, _fields.default, fields),
         formContext: this.getFormContext(),
         formData: formData,
@@ -401,6 +402,7 @@ Form.defaultProps = {
   loading: null,
   loadingText: null,
   oAuthToken: null,
+  ObjectFieldTemplate: null,
   onChange: null,
   onError: null,
   onSubmit: null,
@@ -507,6 +509,11 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
    * An oAuth token to make API calls.
    */
   oAuthToken: _propTypes.default.string,
+
+  /**
+   * Custom object field Template for schema form.
+   */
+  ObjectFieldTemplate: _propTypes.default.func,
 
   /**
    * Callback fired when a value changes in the form.

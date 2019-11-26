@@ -291,11 +291,12 @@ class Form extends Component {
           FieldTemplate = _this$props7.FieldTemplate,
           loading = _this$props7.loading,
           loadingText = _this$props7.loadingText,
+          ObjectFieldTemplate = _this$props7.ObjectFieldTemplate,
           onSubmit = _this$props7.onSubmit,
           schema = _this$props7.schema,
           uiSchema = _this$props7.uiSchema,
           widgets = _this$props7.widgets,
-          otherProps = _objectWithoutProperties(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "onSubmit", "schema", "uiSchema", "widgets"]);
+          otherProps = _objectWithoutProperties(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
 
     const loadingProps = {
       loading: loading != null ? loading : submittingForm,
@@ -304,7 +305,7 @@ class Form extends Component {
     return React.createElement(FormStyled, null, React.createElement(Loading, loadingProps), React.createElement(JsonSchemaForm, Object.assign({}, otherProps, {
       ArrayFieldTemplate: customFields.ArrayFieldTemplate,
       FieldTemplate: FieldTemplate ? FieldTemplate : customFields.FieldTemplate,
-      ObjectFieldTemplate: customFields.ObjectFieldTemplate,
+      ObjectFieldTemplate: ObjectFieldTemplate ? ObjectFieldTemplate : customFields.ObjectFieldTemplate,
       fields: _objectSpread({}, customFields, fields),
       formContext: this.getFormContext(),
       formData: formData,
@@ -341,6 +342,7 @@ Form.defaultProps = {
   loading: null,
   loadingText: null,
   oAuthToken: null,
+  ObjectFieldTemplate: null,
   onChange: null,
   onError: null,
   onSubmit: null,
@@ -447,6 +449,11 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
    * An oAuth token to make API calls.
    */
   oAuthToken: PropTypes.string,
+
+  /**
+   * Custom object field Template for schema form.
+   */
+  ObjectFieldTemplate: PropTypes.func,
 
   /**
    * Callback fired when a value changes in the form.
