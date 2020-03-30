@@ -346,6 +346,7 @@ function (_Component) {
           submittingForm = _this$state.submittingForm,
           submittingFormText = _this$state.submittingFormText;
       var _this$props7 = this.props,
+          ArrayFieldTemplate = _this$props7.ArrayFieldTemplate,
           children = _this$props7.children,
           fields = _this$props7.fields,
           FieldTemplate = _this$props7.FieldTemplate,
@@ -356,13 +357,13 @@ function (_Component) {
           schema = _this$props7.schema,
           uiSchema = _this$props7.uiSchema,
           widgets = _this$props7.widgets,
-          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["ArrayFieldTemplate", "children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
       var loadingProps = {
         loading: loading != null ? loading : submittingForm,
         text: loadingText != null && loadingText ? loadingText : submittingFormText
       };
       return _react.default.createElement(FormStyled, null, _react.default.createElement(_Loading.default, loadingProps), _react.default.createElement(_reactJsonschemaForm.default, Object.assign({}, otherProps, {
-        ArrayFieldTemplate: _fields.default.ArrayFieldTemplate,
+        ArrayFieldTemplate: ArrayFieldTemplate ? ArrayFieldTemplate : _fields.default.ArrayFieldTemplate,
         FieldTemplate: FieldTemplate ? FieldTemplate : _fields.default.FieldTemplate,
         ObjectFieldTemplate: ObjectFieldTemplate ? ObjectFieldTemplate : _fields.default.ObjectFieldTemplate,
         fields: (0, _objectSpread2.default)({}, _fields.default, fields),
@@ -389,6 +390,7 @@ Form.defaultProps = {
   actionsTitle: '',
   afterSubmit: null,
   apis: {},
+  ArrayFieldTemplate: null,
   baseUrl: null,
   children: null,
   enableDirtyCheck: false,
@@ -468,6 +470,11 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
    * A set of custom fields for the form.
    */
   fields: _propTypes.default.object,
+
+  /**
+   * Custom Array Template for schema form.
+   */
+  ArrayFieldTemplate: _propTypes.default.func,
 
   /**
    * Custom field Template for schema form.

@@ -286,6 +286,7 @@ class Form extends Component {
           submittingFormText = _this$state.submittingFormText;
 
     const _this$props7 = this.props,
+          ArrayFieldTemplate = _this$props7.ArrayFieldTemplate,
           children = _this$props7.children,
           fields = _this$props7.fields,
           FieldTemplate = _this$props7.FieldTemplate,
@@ -296,14 +297,14 @@ class Form extends Component {
           schema = _this$props7.schema,
           uiSchema = _this$props7.uiSchema,
           widgets = _this$props7.widgets,
-          otherProps = _objectWithoutProperties(_this$props7, ["children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
+          otherProps = _objectWithoutProperties(_this$props7, ["ArrayFieldTemplate", "children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
 
     const loadingProps = {
       loading: loading != null ? loading : submittingForm,
       text: loadingText != null && loadingText ? loadingText : submittingFormText
     };
     return React.createElement(FormStyled, null, React.createElement(Loading, loadingProps), React.createElement(JsonSchemaForm, Object.assign({}, otherProps, {
-      ArrayFieldTemplate: customFields.ArrayFieldTemplate,
+      ArrayFieldTemplate: ArrayFieldTemplate ? ArrayFieldTemplate : customFields.ArrayFieldTemplate,
       FieldTemplate: FieldTemplate ? FieldTemplate : customFields.FieldTemplate,
       ObjectFieldTemplate: ObjectFieldTemplate ? ObjectFieldTemplate : customFields.ObjectFieldTemplate,
       fields: _objectSpread({}, customFields, fields),
@@ -329,6 +330,7 @@ Form.defaultProps = {
   actionsTitle: '',
   afterSubmit: null,
   apis: {},
+  ArrayFieldTemplate: null,
   baseUrl: null,
   children: null,
   enableDirtyCheck: false,
@@ -408,6 +410,11 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
    * A set of custom fields for the form.
    */
   fields: PropTypes.object,
+
+  /**
+   * Custom Array Template for schema form.
+   */
+  ArrayFieldTemplate: PropTypes.func,
 
   /**
    * Custom field Template for schema form.
