@@ -346,6 +346,7 @@ function (_Component) {
           submittingForm = _this$state.submittingForm,
           submittingFormText = _this$state.submittingFormText;
       var _this$props7 = this.props,
+          autoCursor = _this$props7.autoCursor,
           ArrayFieldTemplate = _this$props7.ArrayFieldTemplate,
           children = _this$props7.children,
           fields = _this$props7.fields,
@@ -357,12 +358,13 @@ function (_Component) {
           schema = _this$props7.schema,
           uiSchema = _this$props7.uiSchema,
           widgets = _this$props7.widgets,
-          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["ArrayFieldTemplate", "children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
+          otherProps = (0, _objectWithoutProperties2.default)(_this$props7, ["autoCursor", "ArrayFieldTemplate", "children", "fields", "FieldTemplate", "loading", "loadingText", "ObjectFieldTemplate", "onSubmit", "schema", "uiSchema", "widgets"]);
       var loadingProps = {
         loading: loading != null ? loading : submittingForm,
         text: loadingText != null && loadingText ? loadingText : submittingFormText
       };
       return _react.default.createElement(FormStyled, null, _react.default.createElement(_Loading.default, loadingProps), _react.default.createElement(_reactJsonschemaForm.default, Object.assign({}, otherProps, {
+        autoCursor: autoCursor ? autoCursor : false,
         ArrayFieldTemplate: ArrayFieldTemplate ? ArrayFieldTemplate : _fields.default.ArrayFieldTemplate,
         FieldTemplate: FieldTemplate ? FieldTemplate : _fields.default.FieldTemplate,
         ObjectFieldTemplate: ObjectFieldTemplate ? ObjectFieldTemplate : _fields.default.ObjectFieldTemplate,
@@ -390,6 +392,7 @@ Form.defaultProps = {
   actionsTitle: '',
   afterSubmit: null,
   apis: {},
+  autoCursor: false,
   ArrayFieldTemplate: null,
   baseUrl: null,
   children: null,
@@ -446,6 +449,16 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
   apis: _propTypes.default.oneOfType([_propTypes.default.array, _propTypes.default.object]),
 
   /**
+   * a prop to control the text field cursor
+   */
+  autoCursor: _propTypes.default.bool,
+
+  /**
+   * Custom ArrayFieldTemplate
+   */
+  ArrayFieldTemplate: _propTypes.default.func,
+
+  /**
    * A base URL for making the RESTful API calls.
    */
   baseUrl: _propTypes.default.string,
@@ -470,11 +483,6 @@ Form.propTypes = process.env.NODE_ENV !== "production" ? {
    * A set of custom fields for the form.
    */
   fields: _propTypes.default.object,
-
-  /**
-   * Custom Array Template for schema form.
-   */
-  ArrayFieldTemplate: _propTypes.default.func,
 
   /**
    * Custom field Template for schema form.
