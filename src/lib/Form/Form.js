@@ -56,6 +56,14 @@ class Form extends Component {
          */
         apis              : PropTypes.oneOfType([PropTypes.array, PropTypes.object]),
         /**
+         * a prop to control the text field cursor
+         */
+        autoCursor          : PropTypes.bool,
+        /**
+         * Custom ArrayFieldTemplate
+         */
+        ArrayFieldTemplate     : PropTypes.func,
+        /**
          * A base URL for making the RESTful API calls.
          */
         baseUrl           : PropTypes.string,
@@ -173,6 +181,8 @@ class Form extends Component {
         actionsTitle      : '',
         afterSubmit       : null,
         apis              : {},
+        autoCursor        : false,
+        ArrayFieldTemplate: null,
         baseUrl           : null,
         children          : null,
         enableDirtyCheck  : false,
@@ -474,6 +484,8 @@ class Form extends Component {
     render() {
         const { formData, submittingForm, submittingFormText } = this.state;
         const {
+            autoCursor,
+            ArrayFieldTemplate,
             children,
             fields,
             FieldTemplate,
@@ -497,7 +509,8 @@ class Form extends Component {
                 <Loading {...loadingProps} />
                 <JsonSchemaForm
                     {...otherProps}
-                    ArrayFieldTemplate={customFields.ArrayFieldTemplate}
+                    autoCursor={autoCursor ? autoCursor : false}
+                    ArrayFieldTemplate={ArrayFieldTemplate ? ArrayFieldTemplate : customFields.ArrayFieldTemplate}
                     FieldTemplate={FieldTemplate ? FieldTemplate : customFields.FieldTemplate}
                     ObjectFieldTemplate={ObjectFieldTemplate ? ObjectFieldTemplate : customFields.ObjectFieldTemplate}
                     fields={{ ...customFields, ...fields }}
